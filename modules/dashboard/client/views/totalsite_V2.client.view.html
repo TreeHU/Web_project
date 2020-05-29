@@ -1,0 +1,452 @@
+<style>
+
+
+    .col-lg-4total {
+            width: 20%;
+            height: 200px;
+            float: left;
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-bottom: 15px;
+    }
+
+    .calen{
+
+        float:left;
+        width:60%;
+    }
+    .calen2{
+
+        float:left;
+        width:40%;
+    }
+
+
+
+    .totaloverview {
+            width: 40%;
+            height: 200px;
+            float: left;
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-bottom: 15px;
+    }
+
+    .secondline {
+            width: 20%;
+            height: 170px;
+            float: left;
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-bottom: 15px;
+    }
+
+
+    .col-xs-15,
+    .col-sm-15,
+    .col-md-15,
+    .col-lg-15 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 10px;
+            padding-left: 10px;
+    }
+
+
+    .col-xs-15 {
+            width: 20%;
+            float: left;
+    }
+
+    @media (min-width: 768px) {
+            .col-sm-15 {
+                    width: 20%;
+                    float: left;
+            }
+    }
+
+    @media (min-width: 992px) {
+            .col-md-15 {
+                    width: 20%;
+                    float: left;
+            }
+    }
+
+    @media (min-width: 1200px) {
+            .col-lg-15 {
+                    width: 20%;
+                    float: left;
+            }
+    }
+
+
+
+    .col-xs-16,
+    .col-sm-16,
+    .col-md-16,
+    .col-lg-16 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 10px;
+            padding-left: 10px;
+    }
+
+
+    .col-xs-16 {
+            width: 40%;
+            float: left;
+    }
+
+    @media (min-width: 768px) {
+            .col-sm-16 {
+                    width: 40%;
+                    float: left;
+            }
+    }
+
+    @media (min-width: 992px) {
+            .col-md-16 {
+                    width: 40%;
+                    float: left;
+            }
+    }
+
+    @media (min-width: 1200px) {
+            .col-lg-16 {
+                    width: 40%;
+                    float: left;
+            }
+    }
+</style>
+
+<h3>
+    전체 사이트 수급 현황 상세 
+ </h3>
+ <!-- START Prototype Box -->
+ <div class="row">
+    <div class="col-lg-15 col-md-15">
+            <div class="panel panel-info" id="panelDemo10">
+                    <div class="panel-heading"><strong>site overview</strong></div>
+                    <div class="panel-body">
+                                    <li> 전체 사이트 : <strong>0</strong>개</li>
+                                    <li>평균 수요량(D) : <span>0</span></li>
+                                    <li>평균 발전량(D) : <span>0</span></li>
+                                    <li>평균 수요량(M) : <span>0</span></li>
+                                    <li>평균 발전량(M) : <span>0</span></li>          
+                    </div>
+            </div>
+    </div>
+    <!-- END panel-->
+    
+    <!-- START panel-->
+    <div class="col-lg-16 col-md-16">
+            <div class="panel panel-info" id="panelDemo10">
+                    <div class="panel-heading"><strong>Energy Demand Overview</strong></div>
+                    <div class="panel-body" ng-controller="totalSiteGaugeController">
+                            <div class="row">
+                                    <div class="col-lg-12usg" id="demandGauge"></div>
+                                    <div class="col-lg-12usg">      
+                                            <p><h1 style="text-align:center; font-size:17px;"><br> 어제 전기+열 사용량:<br>{{demand_yesterday}}</h1></p>
+                                            <p><h1 style="text-align:center; font-size:17px;"><br>오늘 전기+열 사용량:<br>{{demand_today}}</h1></p>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+    <!-- END panel-->
+    <!-- START panel-->
+    <div class="col-lg-16 col-md-16">
+            <div class="panel panel-info" id="panelDemo10">
+                    <div class="panel-heading"><strong>Energy Supply Overview</strong></div>
+                    <div class="panel-body" ng-controller="totalSiteGaugeController">
+                            <div class="row">
+                                    <div class="col-lg-12usg" id="supplyGauge"></div>
+                                    <div class="col-lg-12usg"> 
+                                            <p><h1 style="text-align:center; font-size:17px;"><br> 어제 전기+열 생산량:<br>{{supply_yesterday}}</h1></p>
+                                            <p><h1 style="text-align:center; font-size:17px;"><br>오늘 전기+열 생산량:<br>{{supply_today}}</h1></p>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+    <!-- END panel-->
+ </div>
+ <!-- END Prototype Box -->
+ 
+   <!-- START Prototype Box2 -->
+ <div class="row" ng-controller="totalSiteInfoController">
+        <div class="col-lg-15 col-md-15">
+           <!-- START panel-->
+           <div class="panel panel-info" id="panelDemo10">
+                <div class="panel-heading"><strong>city energy demand</strong></div>
+                <div class="panel-body">
+                        <!-- <ul id="overView2" style="background:url(../../Resources/images/bg/demand_icon.png) no-repeat 16px 10px">                 -->
+                            <li>MOM : <span>{{cityEnergyData.MOMAbsol}}</span></li>
+                            <li>DOD : <span>{{cityEnergyData.DODAbsol}}</span></li>
+                            
+                        <!-- </ul> -->
+                </div>
+        </div>
+           <!-- END panel-->
+        </div>
+        <!-- <div class="secondline"> -->
+           <!-- START panel-->
+           <div class="col-lg-15 col-md-15">
+           <div class="panel panel-info" id="panelDemo10">
+                   <div class="panel-heading"><strong>Electricity Energy Demand</strong></div>
+                   <div class="panel-body">
+                                <li>MOM : <span>{{elecCData.MOMAbsol}}</span></li>
+                                <li>DOD : <span>{{elecCData.DODAbsol}}</span></li>
+                                <li>전력 사용량 : <span>{{todayElecUsg}}</span></li>
+                                
+                   </div>
+           </div>
+           <!-- END panel-->
+        </div>
+        <div class="col-lg-15 col-md-15">
+              <!-- START panel-->
+              <div class="panel panel-info" id="panelDemo10">
+                      <div class="panel-heading"><strong>Heat Energy Demand</strong></div>
+                      <div class="panel-body">
+                            <li>MOM : <span>{{elecCData.MOMAbsol}}</span></li>
+                            <li>DOD : <span>{{elecCData.DODAbsol}}</span></li>
+                            <li>열 사용량 : <span>0Mcal</span></li>
+                      </div>
+              </div>
+              <!-- END panel-->
+           </div>
+           <div class="col-lg-15 col-md-15">
+                <!-- START panel-->
+                <div class="panel panel-info" id="panelDemo10">
+                        <div class="panel-heading"><strong>Electricity Energy Supply</strong></div>
+                        <div class="panel-body">
+                                        <li>MOM : <span>{{elecSData.MOMAbsol}}</span></li>
+                                        <li>DOD :<span>{{elecSData.DODAbsol}}</span></li>
+                                        <li>전력 공급량 : <span>{{todayElecSpp}}</span></li>
+                                        
+                        </div>
+                </div>
+                <!-- END panel-->
+             </div>
+             <div class="col-lg-15 col-md-15">
+                    <!-- START panel-->
+                    <div class="panel panel-info" id="panelDemo10">
+                            <div class="panel-heading"><strong>Heat Energy Supply</strong></div>
+                            <div class="panel-body">
+                                    <li>MOM : <span>{{elecSData.MOMAbsol}}</span></li>
+                                    <li>DOD :<span>{{elecSData.DODAbsol}}</span></li>
+                                        <li>열 사용량 : <span>0Mcal</span></li>
+                                        
+                            </div>
+                    </div>
+                    <!-- END panel-->
+                 </div>
+   </div>
+   <!-- END Prototype Box -->
+   
+<div class="row">
+    <div class="col-lg-6" ng-controller="totalSiteElecDemandController as linechart">
+            <div id="panelChart9" class="panel panel-default">
+                    <div class="panel-wrapper">
+                            <div class="panel-heading" ng-controller="TSDatepickerCtrl as dp">
+                                    <div class="panel-title">에너지 수요 프로파일</div>
+                                    <div class="row" style="padding:5px 15px 0px 15px;">
+                                            <h5>조회일자</h5>
+                                            <div class="row">
+                                                    <div class="col-lg-4 col-xs-6">
+                                                        <div class="input-group" style="width:205px;">                                  
+                                                            <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date1" is-open="dp.open.date1" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                            ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;" />
+                                                             
+                                                            <span class="input-group-btn">
+                                                                    <button class="btn btn-default" type="button" ng-click="dp.open($event,'date1')">
+                                                                    <em class="fa fa-calendar"></em>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-oval btn-default" ng-click="redraw_TotalUsage(dp.dates.date1)">조회</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+                            <!--panel heading END-->
+                            <div class="panel-body">
+                                    <canvas id="demandChart" width="100px" height="300px"></canvas>
+                            </div>
+                            <div class="panel-footer">
+                                    <div align="right">
+                                            <div class="btn-group">
+                                                    <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                    <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+
+    <div class="col-lg-6" ng-controller="totalSiteElecSupplyController as linechart">
+            <div id="panelChart9" class="panel panel-default">
+                    <div class="panel-wrapper">
+                            <div class="panel-heading" ng-controller="TSDatepickerCtrl as dp">
+                                    <div class="panel-title">에너지 공급 프로파일</div>
+                                    <div class="row" style="padding:5px 15px 0px 15px;">
+                                            <h5>조회일자</h5>
+                                            <div class="row">
+                                                    <div class="col-lg-4 col-xs-6">  
+                                                                <div class="input-group" style="width:205px;">                                
+                                                            <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date2" is-open="dp.open.date2" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                            ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;" />
+                                                            
+                                                            
+                                                            <span class="input-group-btn">
+                                                                    <button class="btn btn-default" type="button" ng-click="dp.open($event,'date2')">
+                                                                    <em class="fa fa-calendar"></em>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-oval btn-default" ng-click="redraw_TotalSupply(dp.dates.date2)">조회</button>
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+                            <!--panel heading END-->
+                            <div class="panel-body">
+                                    <canvas id="mychart2" width="100px" height="300px"></canvas>
+                            </div>
+                            <div class="panel-footer">
+                                    <div align="right">
+                                            <div class="btn-group">
+                                                    <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                    <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+<!-- START 전력 수요 프로파일 -->
+<div class="row">
+    <div class="col-lg-12">
+            <div id="panelChart9" class="panel panel-default" ng-controller="ElecStackedChartController">
+                    <div class="panel-wrapper">
+                            <div class="panel-heading" ng-controller="TSDatepickerCtrl as dp">
+                                    <div class="panel-title">전력 수요 프로파일</div>
+                                    <div class="row" style="padding:5px 15px 0px 15px;">
+                                            <h5>조회일자</h5>
+                                            <div class="row">
+                                                    <div class="col-lg-4 col-xs-6">
+                                                                <div class ="calen"> 
+
+                                                            <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date3" is-open="dp.open.date3"
+                                                                    min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions"
+                                                                    date-disabled="dp.disabled(date, mode)" ng-required="true"
+                                                                    close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;"
+                                                            />
+                                                            </div>
+                                                            <div class ="calen2"> 
+                                                            <span class="input-group-btn">
+                                                                    <button class="btn btn-default" type="button" ng-click="dp.open($event,'date3')">
+                                                                            <em class="fa fa-calendar"></em>
+                                                                    </button>
+
+                                                                    <button type="button" class="btn btn-oval btn-default" ng-click="redraw_ElecDemand(dp.dates.date3)">조회</button>
+
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+
+                            <div class="panel-body">
+                                    <div class="row">
+                                            <div class="panel-body">
+                                                    <canvas id="stackedChart" width="100px" height="365px"></canvas>
+                                            </div>
+                                    </div>
+                            </div>
+                            <div class="panel-footer">
+                                    <div align="right">
+                                            <div class="btn-group">
+                                                    <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                    <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+<!-- END 전력 수요 프로파일 -->
+
+<!-- START 전력 공급 프로파일 -->
+<div class="row">
+    <div class="col-lg-12">
+            <div id="panelChart9" class="panel panel-default" ng-controller="ElecSupplyStackedChartController">
+                    <div class="panel-wrapper">
+                            <div class="panel-heading" ng-controller="TSDatepickerCtrl as dp">
+                                    <div class="panel-title">전력 공급 프로파일</div>
+                                    <div class="row" style="padding:5px 15px 0px 15px;">
+                                            <h5>조회일자</h5>
+                                            <div class="row">
+                                                    <div class="col-lg-4 col-xs-6">
+                                                                <div class ="calen"> 
+
+                                                            <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date4" is-open="dp.open.date4"
+                                                                    min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions"
+                                                                    date-disabled="dp.disabled(date, mode)" ng-required="true"
+                                                                    close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;"
+                                                            />
+                                                            </div>
+                                                            <div class ="calen2"> 
+                                                            <span class="input-group-btn">
+                                                                    <button class="btn btn-default" type="button" ng-click="dp.open($event,'date4')">
+                                                                            <em class="fa fa-calendar"></em>
+                                                                    </button>
+
+                                                                    <button type="button" class="btn btn-oval btn-default" ng-click="redraw_ElecSupply(dp.dates.date4)">조회</button>
+
+                                                            </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+
+                            <div class="panel-body">
+                                    <div class="row">
+                                            <div class="panel-body">
+                                                    <canvas id="stackedSupplyChart" width="100px" height="365px"></canvas>
+                                            </div>
+                                    </div>
+                            </div>
+                            <div class="panel-footer">
+                                    <div align="right">
+                                            <div class="btn-group">
+                                                    <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                    <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                    <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+<!-- END 전력 공급 프로파일 -->

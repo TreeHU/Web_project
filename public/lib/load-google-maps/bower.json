@@ -1,0 +1,11 @@
+{
+        "name": "load-google-maps",
+        "version": "1.0.0",
+        "main": ["./load-google-maps.js"],
+        "author": "Glenn Baker & Gavin Foley",
+        "dependencies": {
+                "jquery": ">=1.5"
+        },
+        "license": ["MIT", "GPL"],
+        "keywords": ["Google Maps", "Async"]
+}

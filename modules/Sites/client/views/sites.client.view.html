@@ -1,0 +1,365 @@
+<style>
+
+.calen{
+
+float:left;
+width:60%;
+}
+    .calen2{
+
+float:left;
+width:40%;
+}
+
+</style>
+
+
+
+<h3>
+
+        <!-- START Language list-->
+<!-- <div class="pull-right">
+        <div uib-dropdown="" is-open="language.listIsOpen" class="btn-group">
+                <button type="button" uib-dropdown-toggle="" class="btn btn-default">{{language.selected}}
+                        <span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInUpShort">
+                        <li ng-repeat="(localeId, langName) in language.available"><a ng-click="language.set(localeId, $event)" href="#">{{langName}}</a>
+                        </li>
+                </ul>
+        </div>
+</div> -->
+<!-- END Language list    -->
+CEMS 상세 페이지 
+        <!-- <small>{{ 'dashboard.WELCOME' | translate:{ appName: app.name } }} !</small> -->
+</h3>
+        <!-- START Prototype Box -->
+<section>
+        <div class="row" ng-controller="SitesInfoController as chart">
+                <div class="col-lg-4">
+                <!-- START panel-->
+                        <div class="panel panel-info" id="panelDemo10" style="height:245px; overflow: auto">
+                                <div class="panel-heading"><strong>{{Fname}}</strong></div>
+                                <div class="panel-body" style="font: 15px;">
+                                        <strong>용도 </strong>: {{Type}}</br>
+                                        <strong>평균 일간 전력사용량 </strong>: {{usageMonthAvg}} kwh</br>
+                                        <strong>평균 일간 신재생발전량 </strong>: {{outputMonthAvg}}kwh</br>
+                                        <strong>평균 월간 전력사용량 </strong>: {{usageYearAvg}}kwh</br>
+                                        <strong>평균 월간 신재생발전량 </strong>: {{outputYearAvg}}kwh</br>
+                                </div>
+                        </div>
+                <!-- END panel-->
+                </div>
+                <div class="col-lg-4">
+                <!-- START panel-->
+                        <div class="panel panel-info" id="panelDemo10" style="height:245px; overflow: auto">
+                                <div class="panel-heading"><strong>관리자 현황</strong></div>
+                                <div class="panel-body" style="font: 15px;">
+                                        <strong>주소</strong>: {{Address}}</br>
+                                        <strong>담당자</strong>: {{Aname}}</br>
+                                        <strong>연락처</strong>: {{Call}}</br>
+                                </div>
+                        </div>
+                <!-- END panel-->
+                </div>
+                <div class="col-lg-4">
+                <!-- START panel-->
+                        <div class="panel panel-info" id="panelDemo10" style="height:245px; overflow: auto"><!-- ng-controller="ChartJSController as chart" -->
+                                <div class="panel-heading"><strong>에너지 사용량</strong></div>
+                                <div class="panel-body">
+                                        <canvas class="chart chart-bar" id="bar" chart-data="chart.barData" chart-labels="chart.barLabels" chart-series="chart.barSeries" chart-colors="chart.barColors" chart-options="chart.barOptions"></canvas>
+                                </div>
+                        </div>
+                <!-- END panel-->
+                </div>
+                <div class="col-lg-4">
+                        <div class="panel panel-info" id="panelDemo10"  ng-controller="SitesInfoController as chart2" style="height:245px; overflow: auto">
+                                <div class="panel-heading"><strong>에너지 생산량</strong></div>
+                                <div class="panel-body">
+                                        <canvas class="chart chart-bar" id="bar" chart-data="chart2.suppbarData" chart-labels="chart2.barLabels" chart-series="chart2.barSeries" chart-colors="chart2.barColors" chart-options="chart2.barOptions"></canvas>
+                                </div>
+                        </div>
+                </div>
+        </div>
+     <!-- END Prototype Box -->
+        <div class="jumbotron text-center">
+                <div class="row" >
+                        <div class="col-lg-12">
+                                <uib-tabset class="active show">
+                                        <uib-tab heading="에너지 수요" >
+                                                <div ng-controller="demandChartController as linechart">
+                                                <div id="panelChart4" class="panel panel-default">
+                                                        <div class="panel-wrapper">
+                                                                <div class="panel-heading" ng-controller="SiteDatepickerCtrl as dp">
+                                                                        <!-- <div class="pull-right btn-group">
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByDay(dp.dt)">일별</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByMonth()">월별</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByYear()">년도별</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByPeriod()">선택기간별</button>
+                                                                        </div> -->
+                                                                        <div class="row" style="padding:5px 15px 0px 15px;">
+                                                                                <h5 style="text-align: left;">조회일자</h5>
+                                                                                <div class="row">
+                                                                                        <div class="col-lg-4 col-xs-6">  
+                                                                                                <div class="input-group">                              
+                                                                                                        <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date1" is-open="dp.open.date1" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                                                                        ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;" />
+                                                                                                
+                                                                                                
+                                                                                                        <span class="input-group-btn">
+                                                                                                                <button class="btn btn-default" type="button" ng-click="dp.open($event,'date1')">
+                                                                                                                <em class="fa fa-calendar"></em>
+                                                                                                                </button>
+                                                                                                                <button type="button" class="btn btn-oval btn-default" ng-click="redraw_EnergyUsage(dp.dates.date1)">조회</button>
+                                                                                                        </span>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <!-- <div class="row" style="padding:5px 15px 0px 15px;">
+                                                                                <h5 style="text-align:left; padding-left:16px;">조회일자</h5>
+                                                                                <div class="row">
+                                                                                        <div class="col-lg-4 col-xs-6">
+                                                                                        <p class="input-group">
+                                                                                                <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dt" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                                                                ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;" />
+                                                                                                <span class="input-group-btn">
+                                                                                                <button class="btn btn-default" type="button" ng-click="dp.open($event)">
+                                                                                                <em class="fa fa-calendar"></em>
+                                                                                                </button>
+                                                                                                </span>
+                                                                                        </p>
+                                                                                        </div>
+                                                                                        <div class="col-lg-4 col-xs-6">
+                                                                                                <p class="input-group">
+                                                                                                        <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dt" is-open="dp.opened" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                                                                        ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;"/>
+                                                                                                        <span class="input-group-btn">
+                                                                                                        <button class="btn btn-default" type="button" ng-click="dp.open($event)">
+                                                                                                        <em class="fa fa-calendar"></em>
+                                                                                                        </button>
+                                                                                                        </span>
+                                                                                                </p>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div> -->
+                                                                </div>
+                                                                <!--panel heading END-->
+                                
+                                                                <!-- <div uib-collapse="panelChart4" class="panel-wrapper"> -->
+                                                                <div class="panel-body">
+                                                                        <canvas id="sitesDemandChart" width="600px" height="300px"></canvas>
+                                                                </div>
+                                                                <div class="panel-footer">
+                                                                        <div align="right">
+                                                                                <div class="btn-group">
+                                                                                        <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                                                        <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>                                  
+                                                                                        <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                                                        <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <!-- </div> -->
+                                                </div>
+                                                </div>
+                                        </uib-tab>
+                                        <uib-tab heading="에너지 공급">
+                                                <div ng-controller="supplyChartController as linechart">
+                                                        <div id="panelChart4" class="panel panel-default">
+                                                                <div class="panel-heading" ng-controller="SiteDatepickerCtrl as dp">
+                                                                        <!-- <div class="pull-right btn-group">
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByDay(dp.dt)">일별</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByMonth()">월별</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByYear()">년도별</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="ShowByPeriod()">선택기간별</button>
+                                                                        </div> -->
+                                                                        <div class="row" style="padding:5px 15px 0px 15px;">
+                                                                                <h5 style="text-align: left;">조회일자</h5>
+                                                                                <div class="row">
+                                                                                        <div class="col-lg-4 col-xs-6">   
+                                                                                                <div class="input-group">         
+                                                                                                                             
+                                                                                                        <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date2" is-open="dp.open.date2" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                                                                        ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;" />
+                                                                                                        
+                                                                                                        
+                                                                                                        <span class="input-group-btn">
+                                                                                                                <button class="btn btn-default" type="button" ng-click="dp.open($event,'date2')">
+                                                                                                                <em class="fa fa-calendar"></em>
+                                                                                                                </button>
+                                                                                                                <button type="button" class="btn btn-oval btn-default" ng-click="redraw_EnergySupply(dp.dates.date2)">조회</button>
+                                                                                                        </span>
+                                                                                                        
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!--panel heading END-->
+                                                                <div uib-collapse="panelChart4" class="panel-wrapper">
+                                                                        <div class="panel-body">
+                                                                                <canvas id="sitesSupplyChart" width="600px" height="300px"></canvas>
+                                                                        </div>
+                                                                        <div class="panel-footer">
+                                                                                <div align="right">
+                                                                                        <div class="btn-group">
+                                                                                                <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                                                                <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                                                                <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                                                                <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </uib-tab>
+                                </uib-tabset>
+                        </div>
+                </div>
+                <!-- END 에너지수요/공급 -->
+                <div class="row">
+                        <div class="col-lg-6" ng-controller="elecDemandChartController as linechart">
+                                <div id="panelChart9" class="panel panel-default">
+                                        <div class="panel-wrapper">
+                                                <div class="panel-heading" ng-controller="SiteDatepickerCtrl as dp">
+                                                        <div class="panel-title">전력 에너지 수요</div>
+                                                        <div class="row" style="padding:5px 15px 0px 15px;">
+                                                                <h5 style="text-align: left;">조회일자</h5>
+                                                                <div class="row">
+                                                                        <div class="col-lg-4 col-xs-6"> 
+                                                                                <div class="input-group" style="width:205px;">                                
+                                                                                <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date3" is-open="dp.open.date3" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                                                ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;" />
+                                                                                
+                                                                                
+                                                                                <span class="input-group-btn">
+                                                                                        <button class="btn btn-default" type="button" ng-click="dp.open($event,'date3')">
+                                                                                        <em class="fa fa-calendar"></em>
+                                                                                        </button>
+                                                                                        <button type="button" class="btn btn-oval btn-default" ng-click="redraw_ElecDemand(dp.dates.date3)">조회</button>
+                                                                                </span>
+                                                                                </div>
+                                                                                
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <!--panel heading END-->
+                                                <div class="panel-body">
+                                                        <canvas id="elecDemand" width="100px" height="300px"></canvas>
+                                                </div>
+                                                <div class="panel-footer">
+                                                        <div align="right">
+                                                                <div class="btn-group">
+                                                                        <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-lg-6" ng-controller="ElecSupplyChartController as linechart">
+                                        <div id="panelChart9" class="panel panel-default">
+                                                <div class="panel-wrapper">
+                                                        <div class="panel-heading" ng-controller="SiteDatepickerCtrl as dp">
+                                                                <div class="panel-title">전력 에너지 공급</div>
+                                                                <div class="row" style="padding:5px 15px 0px 15px;">
+                                                                        <h5 style="text-align: left;">조회일자</h5>
+                                                                        <div class="row">
+                                                                                <div class="col-lg-4 col-xs-6">           
+                                                                                        <div class="input-group" style="width:205px;">         
+                                                                                        <input class="form-control" type="text" uib-datepicker-popup="{{dp.format}}" ng-model="dp.dates.date4" is-open="dp.open.date4" min-date="dp.minDate" max-date="'2015-06-22'" datepicker-options="dp.dateOptions" date-disabled="dp.disabled(date, mode)"
+                                                                                        ng-required="true" close-text="Close" style="padding-left: 0px; padding-right: 0px; text-align: center;" />
+                                                                                        
+                                                                                        
+                                                                                        <span class="input-group-btn">
+                                                                                                <button class="btn btn-default" type="button" ng-click="dp.open($event,'date4')">
+                                                                                                <em class="fa fa-calendar"></em>
+                                                                                                </button>
+                                                                                                <button type="button" class="btn btn-oval btn-default" ng-click="redraw_ElecSupply(dp.dates.date4)">조회</button>
+                                                                                        </span>
+                                                                                        </div>
+                                                                                        
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <!--panel heading END-->
+                                                        <div class="panel-body">
+                                                                <canvas id="elecSupplyChart" width="100px" height="300px"></canvas>
+                                                        </div>
+                                                        <div class="panel-footer">
+                                                                <div align="right">
+                                                                        <div class="btn-group">
+                                                                                <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                                                <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                
+                        <!-- <div class="col-lg-6">
+                                <div id="panelChart9" class="panel panel-default" ng-controller="ElecSupplyChartController as linechart">
+                                        <div uib-collapse="panelChart9" class="panel-wrapper">
+                                                <div class="panel-heading">
+                                                        <div class="panel-title">전력 에너지 공급</div>
+                                                </div>
+                                                <div class="panel-body">
+                                                        <canvas id="elecSupply" width="100px" height="300px"></canvas>
+                                                </div>
+                                                <div class="panel-footer">
+                                                        <div align="right">
+                                                                <div class="btn-group">
+                                                                        <button type="button" class="btn btn-default" ng-click="raw()">RAW</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="quarter()">15분</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="half()">30분</button>
+                                                                        <button type="button" class="btn btn-default" ng-click="hour()">60분</button>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div> -->
+                </div>
+                
+                
+                <!-- <div class="col-lg-6">
+                        <div id="panelChart4" ng-controller="PrototypeController as proto" class="panel panel-default">
+                        <div class="panel-heading">
+                        <paneltool tool-collapse="tool-collapse" tool-dismiss="tool-dismiss"></paneltool>
+                        <div class="panel-title">예측 모델 잔차 및 추세 분석</div>
+                        </div>
+                        <div uib-collapse="panelChart4" class="panel-wrapper">
+                        <div class="panel-body">
+                                <flot dataset="proto.barData" options="proto.barOptions" height="300px"></flot>
+                        </div>
+                </div>
+                </div>
+                </div> -->
+        
+                <!-- <div class="col-lg-6">
+                        <div id="panelChart4" ng-controller="PrototypeController as proto" class="panel panel-default">
+                        <div class="panel-heading">
+                        <paneltool tool-collapse="tool-collapse" tool-dismiss="tool-dismiss"></paneltool>
+                        <div class="panel-title">예측 모델 잔차 및 추세 분석</div>
+                        </div>
+                        <div uib-collapse="panelChart4" class="panel-wrapper">
+                        <div class="panel-body">
+                                <flot dataset="proto.barData" options="proto.barOptions" height="300px"></flot>
+                        </div>
+                        </div>
+                </div>
+                </div> -->
+                </div>
+        </div>
+</section>

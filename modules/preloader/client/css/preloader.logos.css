@@ -1,0 +1,8 @@
+.preloader-progress {
+  background-image: url('/modules/preloader/client/img/preloader.empty.png');
+  background-repeat: no-repeat;
+}
+.preloader-progress-bar {
+  background-image: url('/modules/preloader/client/img/preloader.full.png');
+  background-repeat: no-repeat;
+}

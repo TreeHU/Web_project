@@ -1,0 +1,50 @@
+<section>
+  <div class="page-header">
+    <h1><span ng-bind="user.username"></span> 사용자 상세정보 조회</h1>
+  </div>
+  <div class="page-body">
+  <div class="col-md-12">
+    <form name="userForm" ng-submit="update(userForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="username">아이디</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="user.username" placeholder="First Name" disabled />
+        </div>
+        <div class="form-group" show-errors>
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" class="form-control" ng-model="user.email" placeholder="email" />
+            <div ng-messages="userForm.email.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">이메일은 필수입니다.</p>
+            </div>
+          </div>
+        <div class="form-group">
+            <label for="created">아이디생성일</label>
+            <input type="text" id="created" name="created" class="form-control" ng-value="yyyymmddhhmmss(user.created)" disabled/>
+          </div>
+        <div class="form-group" show-errors>
+          <label for="displayName">사용자명</label>
+          <input type="text" id="displayName" name="displayName" class="form-control" ng-model="user.displayName" placeholder="사용자명" required />
+          <div ng-messages="userForm.displayName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">사용자명은 필수 입니다.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="roles">등급</label>
+          <div class="controls">
+              <select ng-model="selectedName">
+                <option value='user' selected>사용자</option>
+                <option value='admin'>관리자</option>
+              </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-default">
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+</section>

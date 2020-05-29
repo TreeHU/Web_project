@@ -1,0 +1,41 @@
+{
+  "name": "angular-bootstrap-tour",
+  "version": "0.3.4",
+  "main": "dist/angular-bootstrap-tour.js",
+  "ignore": [
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    ".jshintrc",
+    ".npmignore",
+    ".travis.yml",
+    ".umd",
+    "gulpfile.js",
+    "npm-shrinkwrap.json",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.2.23",
+    "bootstrap-tour": "~0.9.3",
+    "jquery": "1.11.1",
+    "bootstrap": "3.0.3"
+  },
+  "devDependencies": {
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2",
+    "angular-route": "1.2.16"
+  },
+  "resolutions": {
+    "angular": "1.2.16"
+  },
+  "homepage": "https://github.com/benmarch/angular-bootstrap-tour",
+  "_release": "0.3.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.4",
+    "commit": "adc980aa3fa50beeda12d63fa007482db2376c3c"
+  },
+  "_source": "https://github.com/benmarch/angular-bootstrap-tour.git",
+  "_target": "0.3.4",
+  "_originalSource": "angular-bootstrap-tour"
+}

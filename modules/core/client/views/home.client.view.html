@@ -1,0 +1,447 @@
+<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <div uib-dropdown="" is-open="language.listIsOpen" class="btn-group">
+            <button type="button" uib-dropdown-toggle="" class="btn btn-default">{{language.selected}}
+                <span class="caret"></span>
+            </button>
+            <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInUpShort">
+                <li ng-repeat="(localeId, langName) in language.available">
+                    <a ng-click="language.set(localeId, $event)">{{langName}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- END Language list    -->
+    Home
+    <small>{{ 'dashboard.WELCOME' | translate:{ appName: app.name } }} !</small>
+</h3>
+
+
+<!-- <section ng-controller="HomeDataController"> -->
+<section>
+    <!-- START row-->
+    <!-- <div class="row" ng-controller="HomeController">
+        <div class="col-lg-3 col-md-6">
+            
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <em class="fa fa-flag fa-5x"></em>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="text-md">지역본부</div>
+                            <p class="m0"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block" ng-click="open('지역본부')">
+                    <span class="pull-left">자세히보기</span>
+                    <span class="pull-right">
+                        <em class="fa fa-chevron-circle-right"></em>
+                    </span>
+                </a>
+                
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <em class="fa fa-university fa-5x"></em>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="text-md">연수원</div>
+                            <p class="m0"></p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block" ng-click="open('연수원')">
+                    <span class="pull-left">자세히보기</span>
+                    <span class="pull-right">
+                        <em class="fa fa-chevron-circle-right"></em>
+                    </span>
+                </a>
+            </div>
+            
+        </div>
+        <div class="col-lg-3 col-md-6">
+            
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <em class="fa fa-flask fa-5x"></em>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="text-md">주택</div>
+                            <p class="m0"></p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block" ng-click="open('주택')">
+                    <span class="pull-left">자세히보기</span>
+                    <span class="pull-right">
+                        <em class="fa fa-chevron-circle-right"></em>
+                    </span>
+                </a>
+            </div>
+            
+        </div>
+        <div class="col-lg-3 col-md-6">
+            
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <em class="fa fa-building fa-5x"></em>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="text-md">사옥</div>
+                            <p class="m0"></p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block" ng-click="open('사옥')">
+                    <span class="pull-left">자세히보기</span>
+                    <span class="pull-right">
+                        <em class="fa fa-chevron-circle-right"></em>
+                    </span>
+                </a>
+            </div>
+            
+        </div>
+    </div> -->
+    <div class="row" >
+        <div class="col-lg-3 col-md-6" ng-controller="HomeInfoController">
+            <!-- START panel-->
+            <div class="panel panel-info" id="panelCity" style="height:245px; overflow: auto;">
+                <div class="panel-heading">Smart CEMS 현황
+                    <!-- <paneltool tool-refresh="standard" tool-collapse="tool-collapse"></paneltool> -->
+                </div>
+                <div class="panel-wrapper" uib-collapse="panelCity">
+                    <div class="panel-body">
+                        <p>전체사이트: 26개소</p>
+                        <p>평균 일간 전력사용량: {{EC_DayAVG}}KWh</p>
+                        <p>평균 일간 신재생발전량: {{EO_DayAVG}}KWh</p>
+                        <p>평균 월간 전력사용량: {{EC_MonAVG}}KWh</p>
+                        <p>평균 월간 신재생발전량: {{EO_MonAVG}}KWh</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END panel-->
+        </div>
+        <div class="col-lg-3 col-md-6" ng-controller="HomeCarouselController as caro">
+            <!-- START panel-->
+            <div class="panel panel-info" id="panelResident" style="height:245px; overflow: auto;">
+                <div class="panel-heading">상업
+                    <!-- <paneltool tool-refresh="standard" tool-collapse="tool-collapse"></paneltool> -->
+                </div>
+                
+                <div class="panel-wrapper" uib-collapse="panelResident">
+                    <div class="panel-body">
+                            <ul rn-carousel="" rn-carousel-index="3" rn-carousel-auto-slide="3">
+                                <li>
+                                    <img alt="" id="fcimage" src="img/lh.png" style="float: left;">
+                                    <div style="float: left;">
+                                        <p>용도: 상업용</p>
+                                        <p>평균 일간 전력사용량: 2KWh</p>
+                                        <p>평균 일간 신재생발전량: 7KWh</p>
+                                        <p>평균 월간 전력사용량: 2KWh</p>
+                                        <p>평균 월간 신재생발전량: 3KWh</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img alt="" id="fcimage" src="img/lh.png" style="float: left;">
+                                    <div style="float: left;">
+                                        <p>용도: 상업용</p>
+                                        <p>평균 일간 전력사용량: 2KWh</p>
+                                        <p>평균 일간 신재생발전량: 7KWh</p>
+                                        <p>평균 월간 전력사용량: 2KWh</p>
+                                        <p>평균 월간 신재생발전량: 3KWh</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img alt="" id="fcimage" src="img/lh.png" style="float: left;">
+                                    <div style="float: left;">
+                                        <p>용도: 상업용</p>
+                                        <p>평균 일간 전력사용량: 2KWh</p>
+                                        <p>평균 일간 신재생발전량: 7KWh</p>
+                                        <p>평균 월간 전력사용량: 2KWh</p>
+                                        <p>평균 월간 신재생발전량: 3KWh</p>
+                                    </div>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END panel-->
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <!-- START panel-->
+            <div class="panel panel-info" id="panelCommerce" style="height:245px; overflow: auto;">
+                <div class="panel-heading">공지
+                    <!-- <paneltool tool-refresh="standard" tool-collapse="tool-collapse"></paneltool> -->
+                </div>
+                <div class="panel-wrapper" uib-collapse="panelCommerce">
+                    <div class="panel-body">
+                        <div class="table">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead style="text-align:center;">
+                                    <tr>
+                                        <th>일시</th>
+                                        <th>내용</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="success">
+                                        <td>2018.07.14</td>
+                                        <td>2분기 통합 점검 완료</td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>2018.07.01</td>
+                                        <td>2분기 통합 점검 유의사항</td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>2018.06.25</td>
+                                        <td>2분기 통합 점검 유의사항 안내</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END panel-->
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <!-- START panel-->
+            <div class="panel panel-info" id="panelIndustry" style="height:245px; overflow: auto;">
+                <div class="panel-heading">보고
+                    <!-- <paneltool tool-refresh="standard" tool-collapse="tool-collapse"></paneltool> -->
+                </div>
+                <div class="panel-wrapper" uib-collapse="panelIndustry">
+                    <div class="panel-body">
+                        <div class="table">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr style="text-align: center">
+                                        <th>일시</th>
+                                        <th>내용</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="success">
+                                        <td>2018.07.14</td>
+                                        <td>2분기 통합 점검 완료</td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>2018.07.01</td>
+                                        <td>2분기 통합 점검 유의사항</td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>2018.06.25</td>
+                                        <td>2분기 통합 점검 유의사항 안내</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END panel-->
+        </div>
+
+    </div>
+    <!-- END row-->
+
+    <div class="jumbotron text-center" ng-controller="CoreHomeMapController as gmap">
+        <div class="row">
+            <!--지도 자리-->
+            <div class="col-md-12" style=" float:left; width:100%; margin-right:1%; height:100%;">
+                <div class="panel widget" style="height: 100%;">
+                    <div class="side-panel-wrapper">
+                        <!-- side 펼침 체크박스 시작 -->
+                        <div class="side-panel">
+                            <div class="side-panel-box">군관리 범위 설정</div>
+                            <ul>
+                                <li class="range">
+                                    <span>
+                                        <input type="checkbox" id="selectbox" ng-model="useAllSelected" ng-click="usesCheckAll($event)"><label for="use" class="use_checkAll" >용도</label>
+                                    </span>
+                                    <ul id="scopeUses">
+                                        <li ng-repeat="use in uses">
+                                            <input type="checkbox" value={{use.type}} class="usecheck" ng-model="use.selected"><label for="use01">{{use.type}}</label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="range">
+                                    <span>
+                                        <input type="checkbox" id="selectbox" ng-model="areaAllSelected" ng-click="areaCheckAll($event)"><label for="area" class="area_checkAll">지역</label>
+                                    </span>
+                                    <ul id="scopeUses">
+                                        <li ng-repeat="area in local">
+                                            <input type="checkbox" ng-model="area.selected" value={{area.area}} class="areacheck"><label for="area01">{{area.area}}</label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="range">
+                                    <div class="side-panel-state-btn">
+                                        <button type="button" class="Allchart" id="state-btn" ng-click="save()">적용</button>
+                                        
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- side 펼침 체크박스 끝-->
+                        <div class="slider-arrow" title="군관리 범위 설정 버튼">&raquo;</div>
+                    </div>
+                    <div ui-map="gmap.myMap1" ui-options="gmap.mapOptions1" class="gmap"></div>
+                </div>
+            </div>
+        </div>
+        <!--END google map -->
+        <!--START 전체 사이트 에너지 수급 현황  -->
+        <div class="row" ng-controller="HomeChartController as chart"> 
+            <div class="mychart" ng-controller="ChartbyTypeController as chart" style="width:100%; height: 66%; float: left; ">
+                <div style="background:white; width: 100%; height: 30%; ">
+                    <div style="background: #cfcece; width: 100%; height: 10%;float: left; ">
+                        <h4><strong> 전체 사이트의 에너지 수급 현황 <a href="" class="select">[자세히]</a></strong></h4>
+                    </div>
+                    <div id="panelChart4" style="float: left; width: 100%; height: 30%; ">
+                        <div uib-collapse="panelChart4" class="panel-wrapper">
+                            <div id="myChartContent" class="panel-body">
+                                <canvas id="myChart" width="500px" height="400px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END 전체 사이트 에너지 수급 현황  -->
+
+        <!--START 용도별 열,전기 수급 현황 -->
+        <div class="row" style="background:white;">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div style="background: #cfcece; width: 100%; height: 10%;float: left; ">
+                        <h4><strong>용도별 에너지 소비량 현황</strong></h4>
+                    </div>
+                    <div id="panelChart4">
+                        <div class="panel-heading">
+                            <div class="panel-title">전기</div>
+                        </div>
+                        <div uib-collapse="panelChart4">
+                            <div id="myChartContent1" class="panel-body">
+                                <canvas id="myChart1" width="500px" height="300px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div style="background: #cfcece; width: 100%; height: 10%;float: left; ">
+                        <h4><strong>용도별 에너지 소비량 현황</strong></h4>
+                    </div>
+                    <div id="panelChart4">
+                        <div class="panel-heading">
+                            <div class="panel-title">열</div>
+                        </div>
+                        <div uib-collapse="panelChart4">
+                            <div id="myChartContent2" class="panel-body">
+                                <canvas id="myChart2" width="500px" height="300px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div style="background: #cfcece; width: 100%; height: 10%;float: left; ">
+                        <h4><strong>용도별 에너지 생산량 현황</strong></h4>
+                    </div>
+                    <div id="panelChart4">
+                        <div class="panel-heading">
+                            <div class="panel-title">전기</div>
+                        </div>
+                        <div uib-collapse="panelChart4">
+                            <div id="myChartContent3" class="panel-body">
+                                <canvas id="myChart3" width="500px" height="300px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div style="background: #cfcece; width: 100%; height: 10%;float: left; ">
+                        <h4><strong>용도별 에너지 생산량 현황</strong></h4>
+                    </div>
+                    <div id="panelChart4">
+                        <div class="panel-heading">
+                            <div class="panel-title">열</div>
+                        </div>
+                        <div uib-collapse="panelChart4">
+                            <div id="myChartContent4" class="panel-body">
+                                <canvas id="myChart4" width="500px" height="300px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END 용도별 열,전기 수급 현황 -->
+    </div>
+    <!-- END Jumbotron -->
+
+            <!-- Home Data Controller END -->
+        <!-- </div>
+    </div> -->
+    <!-- <div id="map" style="width:100%;height:400px;" id="navermap" ng-controller="NaverMapController"></div> -->
+</section>
+
+
+<script type="text/ng-template" id="firstDialogId">
+    <!-- <div><h3 class="mt0">ngDialog template</h3><p ng-show="theme">Test content for<code>{{theme}}</code></p><p ng-show="ngDialogData.foo">Data passed through:<code>{{ngDialogData.foo}}</code></p><p ng-show="dialogModel.message">Scope passed through:<code>{{dialogModel.message}}</code></p><button type="button" ng-dialog="secondDialogId" ng-dialog-class="ngdialog-theme-default" ng-dialog-controller="SecondModalCtrl" ng-dialog-close-previous="ng-dialog-close-previous" class="btn btn-default mr">Close and open</button><button type="button" ng-click="openSecond()" class="btn btn-primary">Open next</button></div> -->
+    <!-- ngRepeat + ngResource-->
+   <div class="panel panel-default">
+        <div class="panel-heading">{{type}}<br>
+           <!-- <small>{{type}}</small> -->
+       </div>
+       <div class="panel-body">
+           <div ng-controller="FacilitiesPopupController as table">
+               <table datatable="" dt-options="table.dtOptions" dt-columns="table.dtColumns" class="row-border hover"></table>
+           </div>
+       </div>
+   </div>
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    //사이드 패널 숨김 펼침 이벤트
+    $('.slider-arrow').click(function(){
+        $(".side-panel").animate({width:'toggle'},500);       
+    });
+    //자세히 클릭 이벤트
+    $(".select").click(function () {
+        var selectedSensor=null;
+        selectedSensor = angular.element('.Allchart').scope().save();
+        var facilityList = '';
+        selectedSensor.forEach(function (value, index) {
+            facilityList += "'" + value.equip_Id + "',";
+        })
+        facilityList = facilityList.slice(0, (facilityList.length - 1));
+        facilityList = "(" + facilityList + ")";
+
+        angular.element('.Allchart').scope().changePrototypeSelect(facilityList);
+    });
+    
+})
+</script>

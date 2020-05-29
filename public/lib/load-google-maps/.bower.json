@@ -1,0 +1,27 @@
+{
+  "name": "load-google-maps",
+  "main": [
+    "./load-google-maps.js"
+  ],
+  "author": "Glenn Baker & Gavin Foley",
+  "dependencies": {
+    "jquery": ">=1.5"
+  },
+  "license": [
+    "MIT",
+    "GPL"
+  ],
+  "keywords": [
+    "Google Maps",
+    "Async"
+  ],
+  "_release": "6b9292a4f4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6b9292a4f44a7bc6adcdebfcc82279a9fde67f81"
+  },
+  "_source": "https://gist.github.com/8613939.git",
+  "_target": "*",
+  "_originalSource": "https://gist.github.com/8613939.git"
+}
