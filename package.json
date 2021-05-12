@@ -27,7 +27,7 @@
     "bower-npm-resolver": "^0.6.0",
     "cfenv": "~1.0.0",
     "chalk": "^1.1.0",
-    "chart.js": "^2.7.2",
+    "chart.js": "^2.9.4",
     "chartjs": "^0.3.24",
     "compression": "^1.5.0",
     "connect-flash": "~0.1.1",
