@@ -119,7 +119,7 @@
     "serve-favicon": "^2.3.0",
     "should": "^7.0.1",
     "socket.io": "^1.3.7",
-    "supertest": "^1.0.1",
+    "supertest": "^6.3.3",
     "swig": "^1.4.2",
     "validator": "^3.41.2"
   }
